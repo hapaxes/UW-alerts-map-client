@@ -1,0 +1,10 @@
+.container {
+  height: auto;
+  width: 5px;
+  min-width: 5px;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

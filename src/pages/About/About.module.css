@@ -1,0 +1,69 @@
+.pageContainer {
+  padding: 1rem 0 0;
+  display: grid;
+  grid-template-columns: 10% 1fr 4fr 1fr 10%;
+  grid-template-areas:
+    ".  aside content toTop ."
+    " footer footer footer footer footer";
+  grid-template-rows: auto 5rem;
+  position: relative;
+}
+
+.toTop {
+  position: sticky;
+  grid-area: toTop;
+  font-size: 2rem;
+  color: white;
+  width: 3rem;
+  height: 3rem;
+
+  bottom: 2rem;
+  margin-top: auto;
+  margin-left: 1rem;
+}
+
+.arrow:hover + .arrowBackground {
+  width: 3rem;
+  height: 3rem;
+  top: 0;
+  left: 0;
+}
+
+.arrow {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  padding: 0.25rem;
+  border-radius: 50px;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.arrowBackground {
+  z-index: -1;
+  position: absolute;
+  background-color: var(--uw-red);
+  height: 0rem;
+  width: 0rem;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px 0 10px 0;
+
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.footer {
+  grid-area: footer;
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0;
+  color: var(--uw-gold);
+  font-style: italic;
+  font-size: 0.8rem;
+}

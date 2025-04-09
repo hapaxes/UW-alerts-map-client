@@ -1,0 +1,30 @@
+.container {
+  flex: 1;
+  height: 100%;
+
+  position: relative;
+}
+
+#map {
+  height: 100%;
+}
+
+.map {
+  height: 100%;
+}
+
+/*
+Styling the leaflet + and - signs wasn't working with just this method, so 
+unfortunately... added "!important", and it worked.
+*/
+:global(.leaflet-control-zoom-in),
+:global(.leaflet-control-zoom-out) {
+  background-color: var(--uw-light-gold) !important;
+  border: 2px solid var(--uw-dark-purple) !important;
+  color: var(--uw-dark-purple) !important;
+}
+
+:global(.leaflet-control-zoom-in:hover),
+:global(.leaflet-control-zoom-out:hover) {
+  background-color: var(--uw-lightest-gold) !important;
+}

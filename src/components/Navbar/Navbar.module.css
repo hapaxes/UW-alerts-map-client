@@ -1,0 +1,80 @@
+.container {
+  height: 50px;
+  background-color: var(--uw-dark-purple);
+  display: flex;
+  flex-flow: row;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linksContainer {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  color: white;
+  list-style-type: none;
+  gap: 1rem;
+}
+
+.about {
+  padding-right: 1.2rem;
+  border-right: 1px solid var(--uw-light-purple);
+  color: var(--uw-gold);
+
+  transition: color 0.2s ease;
+}
+.about:hover {
+  color: var(--uw-light-gold);
+}
+
+.linksContainer > * {
+  color: var(--uw-gold);
+  transition: color 0.2s ease-in-out;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.linksContainer > *:hover {
+  color: var(--uw-light-gold);
+  cursor: pointer;
+}
+
+.linksContainer svg {
+  height: 100%;
+}
+
+.githubLogo {
+  height: 50px;
+  padding: 5px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--uw-gold) 0%,
+    var(--uw-dark-gold) 25%,
+    var(--uw-dark-purple) 70%,
+    var(--uw-dark-purple) 90%,
+    var(--uw-dark-gold) 93%,
+    var(--uw-gold) 95%
+  );
+
+  background-size: 200% 100%;
+  transition: background-position 0.75s ease; /* Transition for smooth ending */
+}
+
+.animateProgressBar {
+  animation: uwGradientShift 0.75s ease-in-out infinite;
+}
+
+@keyframes uwGradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}

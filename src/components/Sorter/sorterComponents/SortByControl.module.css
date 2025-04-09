@@ -1,0 +1,39 @@
+.filterContainer {
+  height: auto;
+  width: 100%;
+  margin-right: auto;
+  display: flex;
+  flex-flow: row wrap;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.category:hover {
+  border: 1px solid red;
+}
+
+.selected {
+  background-color: var(--uw-light-purple);
+  color: yellow;
+}
+
+.select {
+  padding: 0.5em 0.5rem;
+  border-radius: 10px;
+  background-color: var(--uw-lightest-gold);
+  color: var(--uw-darkest-purple);
+  font-size: 1rem;
+}
+
+.label {
+  margin: 0.25rem 0;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--uw-lightest-gold);
+}

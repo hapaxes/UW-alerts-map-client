@@ -1,0 +1,14 @@
+.appContainer {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.contentContainer {
+  height: 100%;
+  max-height: 100%;
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  min-height: 0;
+}

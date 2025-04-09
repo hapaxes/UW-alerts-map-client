@@ -1,0 +1,26 @@
+.sidebar {
+  background-color: var(--uw-light-gold);
+  color: var(--uw-darkest-purple);
+  border-radius: 10px 0 10px 0;
+
+  padding: 1rem 0.75rem;
+  grid-area: aside;
+  width: 220px;
+  max-width: 350px;
+  position: sticky;
+  top: 4rem;
+  height: fit-content;
+  margin-right: 1rem;
+
+  transition: color 0.2s ease;
+}
+
+.items,
+.items ol {
+  list-style-type: none;
+}
+
+.items li:hover {
+  cursor: pointer;
+  color: var(--uw-purple);
+}

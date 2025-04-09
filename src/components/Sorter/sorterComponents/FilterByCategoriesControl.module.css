@@ -1,0 +1,80 @@
+.categoriesList {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+
+  list-style-type: none;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.category {
+  padding: 0.5rem;
+  background-color: var(--uw-purple);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  color: var(--uw-lightest-gold);
+
+  transition: background-color 0.1s ease-out;
+}
+
+.category:hover {
+  background-color: var(--uw-light-purple);
+}
+
+.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--uw-gray);
+  background-color: var(--uw-lightest-gold);
+  position: relative;
+  border-radius: 2px;
+}
+
+.input:checked {
+  background-color: red;
+  border: 2px solid red;
+}
+
+.input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: var(--uw-lightest-gold);
+  transform: translate(-50%, -50%);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.input:checked {
+  accent-color: red;
+  color: red;
+}
+
+.inputChecked {
+  color: red;
+}
+
+.inputNotChecked,
+.inputChecked {
+  margin-left: 0.25rem;
+}
+
+.label {
+  font-size: 1.1rem;
+  color: var(--uw-lightest-gold);
+}
+
+.inputNotChecked:hover,
+.inputChecked:hover,
+.input:hover,
+.category:hover {
+  cursor: pointer;
+}
