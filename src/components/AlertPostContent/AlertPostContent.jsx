@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styles from "./AlertPostContent.module.css";
-function AlertPostContent({ contentHtml, title, updateDate, uploadDate, url }) {
+function AlertPostContent({ contentHtml, title, uploadDate, url }) {
   const formattedUploadDate = new Date(uploadDate).toLocaleString();
   const longTitle = title?.length > 30;
 
@@ -25,10 +25,9 @@ function AlertPostContent({ contentHtml, title, updateDate, uploadDate, url }) {
           </h2>
         </a>
         <p className={styles.uploadDate}>
-          Originally posted on:{" "}
+          {formattedUploadDate && "Originally posted on: "}
           <time dateTime={formattedUploadDate}>{formattedUploadDate}</time>
         </p>
-        {/* <p>Post was last updated: {formattedUpdateDate}</p> */}
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: contentHtml }}

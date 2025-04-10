@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-console.log("base url", BASE_URL);
 const STORED_LIST_MAX_AGE = 1000 * 60 * 60; // 1 hour
 
 const initialState = {

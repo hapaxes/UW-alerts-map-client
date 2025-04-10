@@ -1,12 +1,13 @@
 import { useEffect } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import { useMapContext } from "../../contexts/MapContext";
-import Loader from "../Loader/Loader";
-import styles from "./AlertPost.module.css";
+
+import AlertPostContent from "../AlertPostContent/AlertPostContent";
 import AlertPostNav from "../AlertPostNav/AlertPostNav";
 import BackButton from "../BackButton/BackButton";
-import AlertPostContent from "../AlertPostContent/AlertPostContent";
+import Loader from "../Loader/Loader";
+
+import styles from "./AlertPost.module.css";
 
 function AlertPost() {
   /**
@@ -76,40 +77,3 @@ function AlertPost() {
 }
 
 export default AlertPost;
-
-/**THIS IS A POTENTIAL SOLUTION, FROM CHATGPT, BUT FOR NOW,
- * I THNK IT'S BETTER TO TRY TO IMPROVE THE SCRAPING PROCESS
- * 
- * const CleanDiv = ({ content }) => {
-  // Function to remove text content from the div but keep tags
-  const cleanTextContent = (html) => {
-    const div = document.createElement("div");
-    div.innerHTML = html;
-    
-    // Iterate through child nodes and remove text nodes
-    div.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.remove();
-      }
-    });
-    
-    return div.innerHTML; // Return cleaned HTML with tags intact
-  };
-
-  return (
-    <div dangerouslySetInnerHTML={{ __html: cleanTextContent(content) }} />
-  );
-};
-
- */
-
-/**
-when I scrape the data, maybe it's better to save more parts
-of the data, liek the link
-the upload date, the update date,
-so that I can have more control over how I display the content
-
-I think the main post is just what it is
-but at least the header with the title
-link etc is something I want more control over.
- */

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useMapContext } from "../../contexts/MapContext";
-import Logo from "../Logo/Logo";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
@@ -30,14 +29,19 @@ function Navbar() {
   return (
     <>
       <div className={styles.container}>
-        <Logo />
+        <Link to="/list">
+          <h1 className={styles.siteName}>U-District Alerts Map</h1>
+        </Link>
         <ul className={styles.linksContainer}>
           <Link to="/About">
             <li className={styles.about}>About</li>
           </Link>
           <li>
             <div className={styles.githubLogo}>
-              <a href="https://github.com" target="_blank">
+              <a
+                href="https://github.com/hapaxes/UW-alerts-map-client"
+                target="_blank"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     fill="currentColor"

@@ -9,12 +9,14 @@
 }
 
 .linksContainer {
+  padding: 0 1rem;
   display: flex;
   flex-flow: row;
   align-items: center;
   color: white;
   list-style-type: none;
   gap: 1rem;
+  /* border: 1px solid pink; */
 }
 
 .about {
@@ -47,6 +49,17 @@
 .githubLogo {
   height: 50px;
   padding: 5px;
+}
+
+.siteName {
+  color: var(--uw-gold);
+  margin: 0 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.siteName:hover {
+  cursor: pointer;
+  color: var(--uw-light-gold);
 }
 
 .progressBar {

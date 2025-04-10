@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { useMapContext } from "../../contexts/MapContext";
-import BackButton from "../BackButton/BackButton";
-import styles from "./AlertPostNav.module.css";
 import { useEffect, useState } from "react";
+import { useMapContext } from "../../contexts/MapContext";
+
+import BackButton from "../BackButton/BackButton";
+
+import styles from "./AlertPostNav.module.css";
+import LeftRightNav from "./LeftRightNav/LeftRightNav";
 
 function AlertPostNav({ post_id }) {
-  const { unfocusPost, sortedList } = useMapContext();
+  const { sortedList } = useMapContext();
   // in the case that a user navigates to the page by url, the sortedList could
   // be fetched as the user lands on the page. In that case, we want to
   // watch the sortedList and update corresponding data when sortedList is
@@ -44,21 +47,13 @@ function AlertPostNav({ post_id }) {
 
   return (
     <div className={styles.buttonContainer}>
-      {prevIsDisabled ? (
-        <p className={`${styles.buttonNav} ${styles.buttonDisabled}`}>{"<"}</p>
-      ) : (
-        <Link to={"/list/" + prevPostLink}>
-          <p className={styles.buttonNav}>{"<"}</p>
-        </Link>
-      )}
-      <BackButton onClick={unfocusPost} />
-      {nextIsDisabled ? (
-        <p className={`${styles.buttonNav} ${styles.buttonDisabled}`}>{">"}</p>
-      ) : (
-        <Link to={"/list/" + nextPostLink}>
-          <p className={styles.buttonNav}>{">"}</p>
-        </Link>
-      )}
+      <Link to={!prevIsDisabled && "/list/" + prevPostLink}>
+        <LeftRightNav disabled={prevIsDisabled} left={true} />
+      </Link>
+      <BackButton />
+      <Link to={!nextIsDisabled && "/list/" + nextPostLink}>
+        <LeftRightNav disabled={nextIsDisabled} left={false} />
+      </Link>
     </div>
   );
 }

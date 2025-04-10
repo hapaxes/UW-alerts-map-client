@@ -21,17 +21,13 @@ const MAP_MAX_BOUNDS = [
 // 0 - 16, higher value is more zoom
 const DEFAULT_ZOOM = 15;
 
+const MARKERS_PER_BATCH = 20;
+
 function Map() {
-  const [mapPosition, setMapPosition] = useState(DEFAULT_MAP_CENTER);
   const { alertsAreLoading, unfocusPost, sortedList, focusedAlert } =
     useMapContext();
-
-  const {
-    location: [lat, lng],
-  } = useUrlParams();
-
   const navigate = useNavigate();
-  const noPostId = lat && lng && Object.keys(focusedAlert).length === 0;
+  const [mapPosition, setMapPosition] = useState(DEFAULT_MAP_CENTER);
 
   // callback passed to MapMarker
   function onMarkerClick() {
@@ -39,51 +35,12 @@ function Map() {
     navigate("/list");
   }
 
-  // checks whether the current alertItem should be focused (popup should open)
-  // Also, checks whether the url parameters are valid
-  // -> does postId exist?
-  // -> does lat, lng match postId of focusedAlert?
-
-  function getFocused(alertItem) {
-    // if no alertItem is focused, all of the items should be rendered as focused
-    const noLocation = !lat && !lng;
-
-    if (noLocation || noPostId) {
-      return "no-post-is-focused";
-    }
-
-    if (
-      lat === "" + alertItem.location.latitude &&
-      lng === "" + alertItem.location.longitude
-    ) {
-      return "this-post-is-focused";
-    }
-
-    return "this-post-is-not-focused";
-  }
-
   useEffect(
     function () {
-      if (lat && lng) {
+      if (focusedAlert && focusedAlert.location) {
+        const lat = focusedAlert.location.latitude;
+        const lng = focusedAlert.location.longitude;
         setMapPosition({ lat, lng });
-      }
-    },
-    [lat, lng]
-  );
-
-  // if latitude and longitude in the url don't match the focusedAlert
-  // lat and lng, navigate to the correct lat and lng
-  useEffect(
-    function () {
-      if (
-        focusedAlert &&
-        focusedAlert.location &&
-        ("" + focusedAlert.location.latitude !== lat ||
-          "" + focusedAlert.location.longitude !== lng)
-      ) {
-        navigate(
-          `/list/${focusedAlert.post_id}?&lat=${focusedAlert.location.latitude}&lng=${focusedAlert.location.longitude}`
-        );
       }
     },
     [focusedAlert]
@@ -120,7 +77,7 @@ function Map() {
         {focusedAlert && focusedAlert.location ? (
           <MapMarker
             alertItem={focusedAlert}
-            focused={getFocused(focusedAlert)}
+            focused={true}
             onClick={() =>
               navigate(
                 `${focusedAlert.post_id}?lat=${focusedAlert.location.latitude}&lng=${focusedAlert.location.longitude}`
@@ -133,7 +90,7 @@ function Map() {
               alertItem.location && (
                 <MapMarker
                   alertItem={alertItem}
-                  focused={getFocused(alertItem)}
+                  focused={false}
                   key={alertItem._id}
                   onClick={() =>
                     navigate(

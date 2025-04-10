@@ -23,6 +23,7 @@ function useSortedList() {
     function () {
       if (alertsList?.length > 0 && copiedList.length === 0) {
         setCopiedList([...alertsList]);
+        console.log("useSortedList, useEffect");
       }
     },
     [alertsList, copiedList]

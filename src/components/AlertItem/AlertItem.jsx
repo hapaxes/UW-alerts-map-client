@@ -1,8 +1,9 @@
+import React from "react";
 import { useMapContext } from "../../contexts/MapContext";
 import styles from "./AlertItem.module.css";
 import { Link } from "react-router-dom";
 
-function AlertItem({ alertItem }) {
+const AlertItem = React.memo(function AlertItem({ alertItem }) {
   const { setAlertPostLoading } = useMapContext();
   const { post_id, title, date: dateObj, categories } = alertItem;
   const uploadDate = dateObj?.upload_date;
@@ -20,9 +21,9 @@ function AlertItem({ alertItem }) {
   const hasLocation = alertItem.location;
 
   let toLink = `${post_id}`;
-  if (hasLocation) {
-    toLink += `?&lat=${alertItem.location.latitude}&lng=${alertItem.location.longitude}`;
-  }
+  // if (hasLocation) {
+  //   toLink += `?&lat=${alertItem.location.latitude}&lng=${alertItem.location.longitude}`;
+  // }
 
   // the svg is just the little visual on the right side of the alertItem component
   return (
@@ -55,8 +56,7 @@ function AlertItem({ alertItem }) {
       </div>
     </Link>
   );
-}
-
+});
 export default AlertItem;
 
 /**

@@ -1,0 +1,55 @@
+.buttonNav {
+  background-color: var(--uw-light-gold);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--uw-gray);
+  font-size: 1.1rem;
+
+  transition: background-color 0.2s linear;
+  font-weight: bold;
+}
+.buttonNav:hover {
+  cursor: pointer;
+  background-color: var(--uw-lightest-gold);
+}
+
+.buttonDisabled {
+  background-color: var(--uw-dark-gold);
+}
+
+.buttonDisabled:hover {
+  background-color: var(--uw-dark-gold);
+  cursor: not-allowed;
+}
+
+.buttonNavLabelContainer {
+  position: relative;
+  height: 100%;
+}
+
+.buttonNavLabel {
+  position: absolute;
+  top: 0rem;
+  left: 105%;
+  background-color: var(--uw-darkest-purple);
+  color: var(--uw-gold);
+  padding: 0.4rem 0.75rem;
+  border-radius: 10px;
+  z-index: 9999 !important;
+  visibility: hidden;
+  font-size: 0.75rem;
+  opacity: 0;
+  text-align: center;
+
+  transition: opacity 0.2s ease;
+}
+
+.buttonNav:hover + .buttonNavLabel {
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+}

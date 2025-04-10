@@ -5,8 +5,6 @@ export function useUrlParams() {
 
   const sortBy = searchParams.get("sortBy");
   const post_id = searchParams.get("post_id");
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
 
-  return { post_id, location: [lat, lng], sortBy };
+  return { post_id, sortBy };
 }

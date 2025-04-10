@@ -1,3 +1,4 @@
+import React from "react";
 import L from "leaflet";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { useEffect, useRef } from "react";
@@ -6,7 +7,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "./MapMarker.module.css";
 import { useMapContext } from "../../contexts/MapContext";
 
-function MapMarker({ alertItem, focused, onClick }) {
+const MapMarker = React.memo(function MapMarker({
+  alertItem,
+  focused,
+  onClick,
+}) {
   const navigate = useNavigate();
   const popupRef = useRef(null);
   const { unfocusPost } = useMapContext();
@@ -19,7 +24,6 @@ function MapMarker({ alertItem, focused, onClick }) {
   }
 
   function handleXClick() {
-    unfocusPost();
     navigate("/list");
   }
 
@@ -28,7 +32,7 @@ function MapMarker({ alertItem, focused, onClick }) {
   useEffect(
     function () {
       const popupElement = popupRef.current;
-      if (focused === "this-post-is-focused") {
+      if (focused) {
         popupElement
           .setLatLng([location.latitude, location.longitude])
           .openOn(map);
@@ -39,9 +43,10 @@ function MapMarker({ alertItem, focused, onClick }) {
   );
 
   function createMarkerIcon({ r, g, b }) {
-    const opacity = focused !== "this-post-is-not-focused" ? "1" : "0";
+    const opacity = "1";
 
     // here's another "map marker" svg theme I tried
+
     // const svgString = encodeURIComponent(`
     //   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 598">
     //     <path fill="rgba(${r},${g},${b},${opacity})" stroke="rgba(0,0,0,${opacity})" stroke-width="20" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
@@ -98,7 +103,7 @@ function MapMarker({ alertItem, focused, onClick }) {
       </Popup>
     </Marker>
   );
-}
+});
 
 function getColorFromCategory(_categories) {
   const categories = [..._categories].map((category) => category.toLowerCase());
