@@ -3,7 +3,10 @@ import { useMapContext } from "../../contexts/MapContext";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+// used in AppLayout and AboutPage
+// in AppLayout we want to have the "loader" bar and a link to the "about" page
+// hence the conditional rendering, we don't want these parts on the AboutPage
+function Navbar({ loader, gridArea }) {
   const { alertsAreLoading, focusedAlertHtmlObjIsLoading } = useMapContext();
   const [isAnimating, setIsAnimating] = useState(false);
   const isLoading = alertsAreLoading || focusedAlertHtmlObjIsLoading;
@@ -12,6 +15,9 @@ function Navbar() {
   // loading data is pretty quick, so without this, the animation won't even
   // play
   useEffect(() => {
+    if (!loader) {
+      return;
+    }
     if (isLoading) {
       setIsAnimating(true);
     } else {
@@ -19,7 +25,7 @@ function Navbar() {
         setIsAnimating(false);
       }, 600);
     }
-  }, [isLoading]);
+  }, [isLoading, loader]);
 
   let css = styles.progressBar;
   if (isAnimating) {
@@ -28,14 +34,16 @@ function Navbar() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div style={{ gridArea: gridArea }} className={styles.container}>
         <Link to="/list">
           <h1 className={styles.siteName}>U-District Alerts Map</h1>
         </Link>
         <ul className={styles.linksContainer}>
-          <Link to="/About">
-            <li className={styles.about}>About</li>
-          </Link>
+          {loader && (
+            <Link to="/About">
+              <li className={styles.about}>About</li>
+            </Link>
+          )}
           <li>
             <div className={styles.githubLogo}>
               <a
@@ -53,7 +61,7 @@ function Navbar() {
           </li>
         </ul>
       </div>
-      <div className={css}></div>
+      {loader && <div className={css}></div>}
     </>
   );
 }

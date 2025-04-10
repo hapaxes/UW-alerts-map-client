@@ -1,0 +1,67 @@
+.container {
+  position: absolute;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* the leaflet +, - container always peeks through. This was the only 
+    solution I found...
+  */
+  z-index: 9998 !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  z-index: 9999;
+  position: relative;
+  background-color: var(--uw-dark-purple);
+  color: var(--uw-light-gold);
+  width: 30%;
+  padding: 2rem 2rem;
+  text-align: center;
+  line-height: 1.5rem;
+  font-size: 1rem;
+
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 25px 38px, rgba(0, 0, 0, 0.5) 0px 15px 12px;
+}
+
+.x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--uw-gold);
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: var(--uw-dark-purple);
+  border: 2px solid var(--uw-dark-purple);
+
+  transition: all 0.2s ease;
+}
+
+.x:hover {
+  cursor: pointer;
+  border: 2px solid var(--uw-gold);
+  color: var(--uw-gold);
+  background-color: var(--uw-dark-purple);
+}
+
+.exitMessage {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+}

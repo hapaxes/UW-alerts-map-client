@@ -1,10 +1,13 @@
-import styles from "./About.module.css";
 import AboutContent from "./AboutContent";
+import AboutHeader from "./AboutHeader";
 import AboutSidebar from "./AboutSidebar";
+import styles from "./About.module.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 function About() {
   return (
     <div className={styles.pageContainer} id="top">
+      <Navbar loader={false} gridArea={"header"} />
       <AboutSidebar />
       <AboutContent />
       <div className={styles.toTop}>

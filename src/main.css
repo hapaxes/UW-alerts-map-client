@@ -17,9 +17,6 @@ body {
 }
 
 html {
-  overflow-y: auto;
-  scrollbar-width: thick;
-  scrollbar-color: var(--uw-light-gold) var(--uw-light-purple);
 }
 
 :root {

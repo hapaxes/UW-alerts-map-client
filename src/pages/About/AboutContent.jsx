@@ -279,14 +279,13 @@ function AboutContent() {
           <h3 style={{ width: "100%" }}>Immediate next steps</h3>
           <ul className={styles.list}>
             <li>
-              Complete{" "}
+              Continue with React course{" "}
               <a
                 target="_blank"
                 href="https://www.udemy.com/course/the-ultimate-react-course/?srsltid=AfmBOoqSRSV1AW9ReyCSEBRP4F7zaOc0V_lpwl2G8LknoEqV9ry2GDUN"
               >
                 The Ultimate React Course 2025: React, Next.js, Redux & More{" "}
               </a>{" "}
-              (52% completed)
             </li>
           </ul>
           <h3 style={{ width: "100%" }}>Eventual next steps</h3>
@@ -303,7 +302,7 @@ function AboutContent() {
               </span>
             </li>
             <li>
-              In depth JavaScript course ➡️{" "}
+              <span>In depth JavaScript course ➡️ </span>
               <span>
                 <a
                   target="_blank"
@@ -314,25 +313,7 @@ function AboutContent() {
                 ,
               </span>
             </li>
-            <li>
-              {" "}
-              In depth JavaScript course ➡️{" "}
-              <a
-                target="_blank"
-                href="https://frontendmasters.com/courses/deep-javascript-v3/"
-              >
-                FrontendMasters Deep-JavaScript
-              </a>
-            </li>
-            <li>
-              Website accessibility ➡️{" "}
-              <a
-                target="_blank"
-                href="https://frontendmasters.com/courses/accessibility-v3/"
-              >
-                FrontendMasters Website Accessibility
-              </a>
-            </li>
+            <li>Learn about HTTP, TCP/IP, Web Browsers</li>
           </ul>
         </section>
       </main>
