@@ -12,23 +12,35 @@
   color: var(--uw-darkest-purple);
   line-height: 1.4rem;
 }
+.contentContainer h2 {
+  margin: 1rem 0;
+}
 
 .contentContainer h3 {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 .contentContainer h4 {
   font-style: italic;
+  margin: 0;
 }
 
 .contentContainer p {
   margin: 0.5rem 0;
 }
 
+.title {
+  margin-bottom: 1rem;
+}
+
+.title > p {
+  font-style: italic;
+}
+
 .divider {
   width: 95%;
   height: 2px;
   background-color: var(--uw-red);
-  margin: 0 auto;
+  margin: 3rem auto;
 }
 
 .contentContainer a {
@@ -38,6 +50,9 @@
   transition: color 0.2s ease;
 }
 
+.contentContainer a:visited {
+  color: var(--uw-red);
+}
 .contentContainer a:hover {
   cursor: pointer;
   color: var(--uw-purple);
@@ -47,7 +62,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  margin: 2rem 0;
+  margin: 0;
 }
 
 /* FOR WRAPPING AROUND IMAGES */
@@ -66,21 +81,28 @@
   float: left;
   display: flex;
   flex-direction: column;
-  max-width: 15rem;
+  max-width: 20rem;
   height: auto;
   margin: 1rem 1rem 1rem 0;
 }
 
-.imgContainer > label {
-  margin: 0.25 0 1rem 0;
+.imgContainer > .sampleUwAlert {
+  border-radius: 10px;
+  border: 4px solid var(--uw-dark-purple);
+}
+
+.imgLabel {
+  margin: 0.5rem 0 1rem 0;
+  padding: 0 1rem;
   width: 100%;
+  line-height: 1rem;
 
   font-style: italic;
   font-size: 0.9rem;
   text-align: center;
 }
 
-.pseudocode {
+/* .pseudocode {
   background-color: #1e1e1e;
   margin: 0 1rem;
   font-family: Consolas, "Courier New", monospace;
@@ -93,17 +115,21 @@
 
 .pseudoCode p {
   margin: 0;
-}
+} */
 
-.uwAlertScrapingExample {
-  max-width: 100%;
+.diagramContainer {
   width: 100%;
+  max-width: 100%;
+  border: 1px dashed pink;
+  display: flex;
+  flex-flow: column;
 }
 
-.uwAlertScrapingDiagram {
+.diagramContainer > .diagram {
+  border-radius: 10px;
   max-width: 100%;
-  height: auto;
-  display: block;
+  opacity: 0.9;
+  border: 4px solid var(--uw-dark-purple);
 }
 
 .list {

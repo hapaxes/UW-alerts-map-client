@@ -1,20 +1,21 @@
 import styles from "./AboutContent.module.css";
 import sampleUwAlert from "../../assets/sample_UW_alert.png";
-import uwAlertScrapingExample from "../../assets/UW_alert_scraping_example.png";
 import uwAlertScrapingDiagram from "../../assets/UW_alert_scraping_diagram.png";
 
 function AboutContent() {
   return (
     <div className={styles.contentContainer}>
       <main className="main-content">
-        <h1>University District Alerts Map</h1>
-        <p className="author">March, 2025</p>
+        <div className={styles.title}>
+          <h1>University District Alerts Map</h1>
+          <p className="author">March, 2025</p>
+        </div>
         <section id="motivation-for-app">
           <h2>Motivation for App</h2>
           <p>
             As a student at the University of Washington, I am able to receive
-            email and text notifications from the university about things that
-            happen on and near campus, through{" "}
+            email and text notifications from the university about incidents
+            that happen on and near campus, through{" "}
             <span>
               <a target="_blank" href="https://emergency.uw.edu/">
                 UW Alerts
@@ -29,7 +30,7 @@ function AboutContent() {
               className={styles.sampleUwAlert}
               src={sampleUwAlert}
             />{" "}
-            <label htmlFor="sample_Uw_alert">
+            <label className={styles.imgLabel} htmlFor="sample_Uw_alert">
               An example UW alert, based off of
               <span>
                 {" "}
@@ -37,31 +38,29 @@ function AboutContent() {
                   target="_blank"
                   href="https://emergency.uw.edu/2023/09/03/uw-alert-3/"
                 >
-                  this post
+                  this post.
                 </a>
               </span>
             </label>
           </div>
           <div>
             <p>
-              When I looked at UW Alert notifications, I often wouldn't know
-              where these incidents occured because I have terrible street name
-              awareness. So notifications (like the one on the left) (SOMETHING
-              ABOUT THE IMPACT OF THE POST NOT FEELING THAT LARGE)
+              I have a very poor sense of locations based off of street names,
+              so I would have no idea where alerts (like the one on the left)
+              occurred. Turns out that this incident occurred a few blocks from
+              my apartment... yikes.
             </p>
             <p>
-              I looked up "4300 block of Brookly Ave. NE" on a map, and was very
-              surprised to see it was just a few blocks from my apartment.
-            </p>
-            <p>
-              I then had the idea of mapping each alert to a location onto a
-              map, to make it easier to understand where incident occur would
+              Wouldn't it be easier if each alert came with a link to where the
+              incident occurred, on a map app? Or perhaps the alerts webpage
+              itself could have an embedded map, with incidents mapped out? Or,
+              perhaps I could build this!
             </p>
           </div>
         </section>
         <div className={styles.divider}></div>
         <section id="how-i-built-this">
-          <h2>Building Process</h2>
+          <h2>How I built this project:</h2>
           <h3 id="web-scraping" style={{ width: "100%" }}>
             Web Scraping
           </h3>
@@ -79,18 +78,18 @@ function AboutContent() {
               </a>
             </span>
             . Each post was distilled into it's title, url, upload date and
-            post-id. Then, I queried{" "}
+            post-id. I then queried{" "}
             <span>
               <a target="_blank" href="https://gemini.google.com/app">
                 Google Gemini
               </a>
             </span>
-            , a Chat-Gpt like AI, for the address associated with each post (For
-            example, some posts are just general IT notifications, and don't
-            have associated addresses), and the categories associated with each
-            post. If an address existed, I determined the latitude and longitude
-            through the{" "}
+            , a Chat-Gpt like AI, to ask it to put the post in some category
+            (Crime, Weather, IT, etc.). I additionally queried Gemini for the
+            address where the incident initially occurred. If an address
+            existed, I queried the
             <span>
+              {" "}
               <a
                 target="_blank"
                 href="https://developers.google.com/maps/documentation/geolocation/overview"
@@ -98,18 +97,39 @@ function AboutContent() {
                 Google Maps API
               </a>
             </span>{" "}
-            . Each post and post HTML was then stored in a{" "}
+            for it's latitude and longitude. I then stored each derived JSON
+            into{" "}
             <span>
               <a target="_blank" href="https://mongodb.com">
                 MongoDB
               </a>
-            </span>{" "}
-            database.
+            </span>
+            .
           </p>
           <h4 style={{ width: "100%", marginBottom: "0.5rem" }}>
-            Web Scraping - Pseudocode
+            Web Scraping - diagram
           </h4>
-          <div className={styles.pseudocode}>
+          <div className={styles.diagramContainer}>
+            <img
+              className={styles.diagram}
+              id="diagram"
+              src={uwAlertScrapingDiagram}
+            />
+            <label className={styles.imgLabel} htmlFor="diagram">
+              Diagram showing where "url", "title", and "date" was scraped from.
+              "Categories" and "location" first went through the gemeni and
+              googlemaps api. Content scraped from{" "}
+              <span>
+                <a
+                  target="_blank"
+                  href="https://emergency.uw.edu/2025/02/26/shooting-at-ne-47th-st-u-way-ne/"
+                >
+                  this post.
+                </a>
+              </span>
+            </label>
+          </div>
+          {/* <div className={styles.pseudocode}>
             <p>// while there is a next post</p>
             <p>
               //
@@ -145,8 +165,10 @@ function AboutContent() {
               //
               <span style={{ marginLeft: "2rem" }}>move to the next post </span>
             </p>
-          </div>
-          <h3 style={{ width: "100%" }}>Frontend - React.js</h3>
+          </div> */}
+          <h3 id="frontend" style={{ width: "100%" }}>
+            Frontend - React.js
+          </h3>
           <p>
             The frontend, built using{" "}
             <span>
@@ -155,21 +177,20 @@ function AboutContent() {
               </a>
             </span>
             , serves as the interactive interface for visualizing UW Alert data.
-            It receives structured JSON original HTML content from the backend
-            server. Using React Leaflet, each alert with location data is
-            dynamically rendered as a marker on an interactive map, allowing
-            users to geographically understand the spread of these
-            notifications.
+            It received a list of structured JSON of each alert. When an alert
+            is focused, the HTML associated with the post is fetched. Using{" "}
             <span>
               <a target="_blank" href="https://leafletjs.com/">
                 React Leaflet
               </a>
             </span>
-            .
+            , each alert that has a location is dynamically rendered as a marker
+            on an interactive map, allowing users to geographically understand
+            the spread of these notifications. .
           </p>
           <p>
-            State management of shared state (list of alerts, currently focused
-            alert) is mainly handled using the{" "}
+            State management (list of alerts, currently focused alert) is mainly
+            handled using the{" "}
             <span>
               <a
                 target="_blank"
@@ -179,9 +200,9 @@ function AboutContent() {
               </a>
             </span>{" "}
             React hook. I chose to use the useContext hook for it's ease of
-            sharing simple state, and the limited re-renders the web app
-            requires, contributing to a smooth user experience. I additionally
-            leveraged the{" "}
+            sharing simple state. The limited re-renders the web app requires,
+            also made this a good choice, contributing to a smooth user
+            experience. I additionally leveraged the{" "}
             <span>
               <a
                 target="_blank"
@@ -190,11 +211,15 @@ function AboutContent() {
                 useReducer
               </a>
             </span>{" "}
-            hook to batch state updates, simplifying the code.
+            hook to batch state updates, and simplifying the code.
+          </p>
+          <p>
+            Localstorage with time stamps was leveraged to reduce API calls
+            while maintaining fresh data
           </p>
           <p>
             To manage navigation within the application, I implemented
-            declarative routing using <a>React Router's</a>
+            declarative routing using React router's
             <span>
               <a> BrowserRouter</a>
             </span>{" "}
@@ -208,68 +233,68 @@ function AboutContent() {
           <p>
             For styling management, I used{" "}
             <span>
-              <a>CSS Modules</a>
+              <a
+                target="_blank"
+                href="https://css-tricks.com/css-modules-part-1-need/"
+              >
+                CSS Modules
+              </a>
             </span>
             , ensuring component-level encapsulation and avoiding global style
             conflicts
           </p>
 
-          <h3>Server</h3>
-
+          <h3 id="server">Server - Express.js</h3>
           <p>
-            . The server is hosted using{" "}
+            The server uses{" "}
             <span>
-              <a target="_blank" href="https://render.com/">
-                Render
+              <a target="_blank" href="https://expressjs.com/">
+                Express.js
               </a>
-              , and the frontend is hosted using{" "}
-              <span>
-                <a>WHAT IS THE FRONTEND HOSTED THROUGH BRO?</a>
-              </span>
-            </span>
+            </span>{" "}
+            to create a simple API. It connects to a MongoDB database to
+            retrieve data. The API has two main routes: one to list summaries of
+            posts and another to fetch the HTML content of a specific post,
+            which it then sanitizes to prevent potential security issues (and
+            formatting issues on the frontend). The server also implements basic
+            security measures like rate limiting and some HTTP header
+            configurations.
           </p>
+
+          {/* <h3 id="persistent-script">Persistent Script</h3>
           <p>
             A script checks the UW Alerts website every hour for new posts. If a
-            new post is published, the post is distilled into it's pertinent
-            information by the process above. A final email is sent to me for
-            category and address verification (AI's can and do make mistakes).
-          </p>
+            new post is published, the post is distilled into a JSON object of
+            relevant information. A final email is sent to me for category and
+            address verification (AI's can and do make mistakes).
+          </p> */}
         </section>
 
         <div className={styles.divider}></div>
 
-        <section id="resources">
-          <h2>Resources I used</h2>
-          <ul className={styles.list}>
-            <li>
-              <a
-                target="_blank"
-                href="https://www.udemy.com/course/the-ultimate-react-course/?srsltid=AfmBOoqSRSV1AW9ReyCSEBRP4F7zaOc0V_lpwl2G8LknoEqV9ry2GDUN"
-              >
-                The Ultimate React Course 2025: React, Next.js, Redux & More{" "}
-              </a>{" "}
-            </li>
-            <li>
-              <a target="_blank" href="https://frontendmasters.com/">
-                Frontend masters (React.js, HTML/CSS, JavaScript)
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="https://developer.mozilla.org/en-US/">
-                MDN Web Docs
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="https://css-tricks.com/">
-                CSS-Tricks
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="https://chatgpt.com">
-                Chat-Gpt
-              </a>
-            </li>
-          </ul>
+        <section id="reflection">
+          <h2>Reflection</h2>
+          <p>
+            This was very fun to put together :) I enjoyed applying things I've
+            learnt from my react course to a personal project.{" "}
+          </p>
+          <div>
+            Some things I thought about through building this project (and want
+            to learn about).
+            <ul className={styles.list}>
+              <li>
+                Server Development (creating servers that are able to handle
+                (much) greater traffic and queries)
+              </li>
+              <li>
+                How the internet works in detail (What actually happens when I
+                .fetch{"({ ... })"}? What is HTTP?)
+              </li>
+              <li>CSS reusability</li>
+              <li>Design principles (creating aesthetic apps)</li>
+              <li>TypeScript</li>
+            </ul>
+          </div>
         </section>
 
         <div className={styles.divider}></div>
@@ -279,7 +304,7 @@ function AboutContent() {
           <h3 style={{ width: "100%" }}>Immediate next steps</h3>
           <ul className={styles.list}>
             <li>
-              Continue with React course{" "}
+              Continue with React course -{" "}
               <a
                 target="_blank"
                 href="https://www.udemy.com/course/the-ultimate-react-course/?srsltid=AfmBOoqSRSV1AW9ReyCSEBRP4F7zaOc0V_lpwl2G8LknoEqV9ry2GDUN"
@@ -314,6 +339,37 @@ function AboutContent() {
               </span>
             </li>
             <li>Learn about HTTP, TCP/IP, Web Browsers</li>
+          </ul>
+        </section>
+
+        <div className={styles.divider}></div>
+
+        <section id="resources">
+          <h2>Resources I used</h2>
+          <ul className={styles.list}>
+            <li>
+              <a
+                target="_blank"
+                href="https://www.udemy.com/course/the-ultimate-react-course/?srsltid=AfmBOoqSRSV1AW9ReyCSEBRP4F7zaOc0V_lpwl2G8LknoEqV9ry2GDUN"
+              >
+                The Ultimate React Course 2025: React, Next.js, Redux & More{" "}
+              </a>{" "}
+            </li>
+            <li>
+              <a target="_blank" href="https://frontendmasters.com/">
+                Frontend masters (React.js, HTML/CSS, JavaScript)
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="https://developer.mozilla.org/en-US/">
+                MDN Web Docs
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="https://css-tricks.com/">
+                CSS-Tricks
+              </a>
+            </li>
           </ul>
         </section>
       </main>

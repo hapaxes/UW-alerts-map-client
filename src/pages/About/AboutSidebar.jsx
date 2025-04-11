@@ -8,16 +8,31 @@ function AboutSidebar() {
           <a href="#motivation-for-app">Motivation for App</a>
         </li>
         <li>
-          <a href="#how-i-built-this-(TLDR)">How I built this (TLDR)</a>
+          <a href="#how-i-built-this">How I built this</a>
         </li>
-        <li>How I built this (in depth)</li>
-        <ol>
-          <li>Building </li>
-          <li>Web scraping</li>
-          <li>Building of app</li>
-          <li>Script</li>
-        </ol>
-        <li>Next steps</li>
+        <ul className={styles.indentedItems}>
+          <li>
+            <a href="#web-scraping">Web scraping </a>
+          </li>
+          <li>
+            <a href="#frontend">Frontend</a>
+          </li>
+          <li>
+            <a href="#server">Server</a>
+          </li>
+          {/* <li>
+            <a href="#persistent-script">Persistent Script</a>
+          </li> */}
+        </ul>
+        <li>
+          <a href="#reflection">Reflection</a>
+        </li>
+        <li>
+          <a href="#next-steps">Next Steps</a>
+        </li>
+        <li>
+          <a href="#resources">Resources</a>
+        </li>
       </ul>
     </aside>
   );

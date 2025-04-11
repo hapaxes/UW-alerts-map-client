@@ -38,8 +38,8 @@ function LoadingModal() {
       {isOpen && (
         <div className={styles.container}>
           <div className={styles.modal}>
-            This site is hosted on a free-tier. The initial load may take a few
-            seconds 😅
+            This site is hosted on a free-tier, so the server may be asleep 😴.
+            Please give it a second to wake up!
             <div className={styles.x} onClick={handleClose}>
               &times;
             </div>

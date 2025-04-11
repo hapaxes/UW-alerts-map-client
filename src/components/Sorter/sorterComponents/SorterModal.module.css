@@ -10,6 +10,7 @@
 
   padding: 2rem 2rem;
   border-radius: 10px;
+  filter: blur(2px);
 
   background-color: var(--uw-dark-purple);
   color: var(--uw-off-white);

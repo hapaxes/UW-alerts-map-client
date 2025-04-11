@@ -3,7 +3,7 @@
   color: var(--uw-darkest-purple);
   border-radius: 10px 0 10px 0;
 
-  padding: 1rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   grid-area: aside;
   width: 220px;
   max-width: 350px;
@@ -15,6 +15,11 @@
   transition: color 0.2s ease;
 }
 
+.items > li,
+.indentedItems > li {
+  margin: 0.25rem 0;
+}
+
 .items,
 .items ol {
   list-style-type: none;
@@ -23,4 +28,9 @@
 .items li:hover {
   cursor: pointer;
   color: var(--uw-purple);
+}
+
+.indentedItems {
+  list-style-type: "- ";
+  margin-left: 1rem;
 }
