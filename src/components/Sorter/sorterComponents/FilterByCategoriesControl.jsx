@@ -23,9 +23,7 @@ function FilterByCategoriesControl({
 
   return (
     <div>
-      <label className={styles.label} htmlFor="filter-categories">
-        Select categories to exclude
-      </label>
+      <p className={styles.label}>Select categories to exclude</p>
       <ul id="filter-categories" className={styles.categoriesList}>
         {allFilterCategories.map((category) => {
           const isChecked = filterCategoriesToRemove.includes(category);
@@ -43,6 +41,7 @@ function FilterByCategoriesControl({
                 type="checkbox"
               />
               <label
+                htmlFor={category}
                 className={`${
                   isChecked ? styles.inputChecked : styles.inputNotChecked
                 }`}

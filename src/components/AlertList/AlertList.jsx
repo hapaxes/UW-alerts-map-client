@@ -2,14 +2,13 @@ import styles from "./AlertList.module.css";
 import { useMapContext } from "../../contexts/MapContext";
 import Loader from "../Loader/Loader.jsx";
 import AlertItem from "../AlertItem/AlertItem.jsx";
-import useSortedList from "../../hooks/useSortedList.js";
 import { useEffect, useState } from "react";
 
 const INITIAL_LOAD_COUNT = 10;
 
 function AlertList() {
-  const { alertsAreLoading, unfocusPost } = useMapContext();
-  const { sortedList } = useSortedList();
+  const { alertsAreLoading, unfocusPost, sortedList } = useMapContext();
+  // const { sortedList } = useSortedList();
   const [visibleItems, setVisibleItems] = useState([]);
   const [restOfList, setRestOfList] = useState([]);
 

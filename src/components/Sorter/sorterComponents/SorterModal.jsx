@@ -23,13 +23,13 @@ function SorterModal({ isOpen, onClose }) {
   const modalRef = useRef(null);
 
   function handleApply() {
-    handleApplyClick();
     onClose();
+    handleApplyClick();
   }
 
   function handleReset() {
-    handleResetClick();
     onClose();
+    handleResetClick();
   }
 
   useEffect(
