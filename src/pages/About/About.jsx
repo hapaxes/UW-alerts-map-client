@@ -6,7 +6,8 @@ import Navbar from "../../components/Navbar/Navbar";
 
 function About() {
   return (
-    <div className={styles.pageContainer} id="top">
+    <div className={styles.pageContainer}>
+      <div id="top" className={styles.top}></div>
       <Navbar loader={false} gridArea={"header"} />
       <AboutSidebar />
       <AboutContent />
