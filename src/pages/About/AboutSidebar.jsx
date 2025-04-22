@@ -7,6 +7,10 @@ function AboutSidebar() {
         <li>
           <a href="#motivation-for-app">Motivation for App</a>
         </li>
+
+        <li>
+          <a href="#how-i-built-this-overview">How I built this (TLDR)</a>
+        </li>
         <li>
           <a href="#how-i-built-this">How I built this</a>
         </li>

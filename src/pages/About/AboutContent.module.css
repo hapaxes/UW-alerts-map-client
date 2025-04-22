@@ -144,6 +144,17 @@
   color: var(--uw-dark-purple);
 }
 
+.howLinksDescription {
+  width: 100%;
+  margin: 0;
+  font-style: italic;
+}
+
+.aboutHeaderRepoLink {
+  text-decoration: none;
+  font-size: 1rem;
+}
+
 /* --uw-purple: #4b2e83;
 --uw-gold: #b7a57a;
 --uw-light-purple: #6a4ba1;

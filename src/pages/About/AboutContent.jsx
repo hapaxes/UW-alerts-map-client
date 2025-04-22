@@ -59,10 +59,41 @@ function AboutContent() {
           </div>
         </section>
         <div className={styles.divider}></div>
+        <section id="how-i-built-this-overview">
+          <h2>How I built this project (TLDR)</h2>
+          <p>
+            I first scraped the UW alerts page for all alerts ever posted on the
+            blog. Each alert was put through an AI model to extract the address
+            of where incidents occured, and the category of each post. Each post
+            was then saved on MongoDB
+          </p>
+          <p>
+            The frontend is created using React.js. with an Express.js server as
+            the backend
+          </p>
+          <p>
+            I deployed a script that runs every hour that checks the UW alerts
+            website for new posts. If new alerts are found, they are distilled
+            and categorized and saved to MongoDB.
+          </p>
+        </section>
+        <div className={styles.divider}></div>
         <section id="how-i-built-this">
           <h2>How I built this project:</h2>
-          <h3 id="web-scraping" style={{ width: "100%" }}>
-            Web Scraping
+          <p className={styles.howLinksDescription}>
+            Each link in this section links to it's respective code on GitHub.
+          </p>
+          <h3 id="web-scraping">
+            Web Scraping{" "}
+            <span>
+              <a
+                className={styles.aboutHeaderRepoLink}
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-scripts"
+              >
+                <h4>GitHub repo</h4>
+              </a>
+            </span>
           </h3>
           <p>
             I first scraped all UW alerts that had been published on{" "}
@@ -73,14 +104,20 @@ function AboutContent() {
             </span>{" "}
             using{" "}
             <span>
-              <a target="_blank" href="https://pptr.dev/">
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-scripts/blob/master/initialDataScrape.js"
+              >
                 Puppeteer
               </a>
             </span>
             . Each post was distilled into it's title, url, upload date and
             post-id. I then queried{" "}
             <span>
-              <a target="_blank" href="https://gemini.google.com/app">
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-scripts/blob/master/gemini.cjs"
+              >
                 Google Gemini
               </a>
             </span>
@@ -92,7 +129,7 @@ function AboutContent() {
               {" "}
               <a
                 target="_blank"
-                href="https://developers.google.com/maps/documentation/geolocation/overview"
+                href="https://github.com/hapaxes/UW-alerts-map-scripts/blob/master/googleMapsApi.cjs"
               >
                 Google Maps API
               </a>
@@ -100,7 +137,10 @@ function AboutContent() {
             for it's latitude and longitude. I then stored each derived JSON
             into{" "}
             <span>
-              <a target="_blank" href="https://mongodb.com">
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-scripts/blob/master/initialDataScrape.js"
+              >
                 MongoDB
               </a>
             </span>
@@ -129,45 +169,17 @@ function AboutContent() {
               </span>
             </label>
           </div>
-          {/* <div className={styles.pseudocode}>
-            <p>// while there is a next post</p>
-            <p>
-              //
-              <span style={{ marginLeft: "2rem" }}>
-                get the text content of the current post
-              </span>
-            </p>
-            <p>
-              //
-              <span style={{ marginLeft: "2rem" }}>
-                extract title, URL, post ID, and upload date from the text
-              </span>
-            </p>
-            <p>
-              //
-              <span style={{ marginLeft: "2rem" }}>
-                check if the post text contains a location
-              </span>
-            </p>
-            <p>
-              //
-              <span style={{ marginLeft: "2rem" }}>
-                geolocate the location mentioned in the post
-              </span>
-            </p>
-            <p>
-              //
-              <span style={{ marginLeft: "4rem" }}>
-                store the post data (including location if found)
-              </span>
-            </p>
-            <p>
-              //
-              <span style={{ marginLeft: "2rem" }}>move to the next post </span>
-            </p>
-          </div> */}
           <h3 id="frontend" style={{ width: "100%" }}>
-            Frontend - React.js
+            Frontend - React.js{" "}
+            <span>
+              <a
+                className={styles.aboutHeaderRepoLink}
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-client"
+              >
+                <h4>GitHub repo</h4>
+              </a>
+            </span>
           </h3>
           <p>
             The frontend, built using{" "}
@@ -180,7 +192,10 @@ function AboutContent() {
             It received a list of structured JSON of each alert. When an alert
             is focused, the HTML associated with the post is fetched. Using{" "}
             <span>
-              <a target="_blank" href="https://leafletjs.com/">
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/components/Map/Map.jsx"
+              >
                 React Leaflet
               </a>
             </span>
@@ -194,7 +209,7 @@ function AboutContent() {
             <span>
               <a
                 target="_blank"
-                href="https://react.dev/reference/react/useContext"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/contexts/MapContext.jsx"
               >
                 useContext
               </a>
@@ -206,7 +221,7 @@ function AboutContent() {
             <span>
               <a
                 target="_blank"
-                href="https://react.dev/reference/react/useReducer"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/hooks/useMongo.js"
               >
                 useReducer
               </a>
@@ -221,11 +236,22 @@ function AboutContent() {
             To manage navigation within the application, I implemented
             declarative routing using React router's
             <span>
-              <a> BrowserRouter</a>
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/App.jsx"
+              >
+                {" "}
+                BrowserRouter
+              </a>
             </span>{" "}
             and{" "}
             <span>
-              <a>Routes</a>
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/App.jsx"
+              >
+                Routes
+              </a>
             </span>
             , defining clear paths for the main alert list, individual alert
             posts, and the about page.
@@ -233,22 +259,38 @@ function AboutContent() {
           <p>
             For styling management, I used{" "}
             <span>
+              CSS Modules{" "}
               <a
                 target="_blank"
-                href="https://css-tricks.com/css-modules-part-1-need/"
+                href="https://github.com/hapaxes/UW-alerts-map-client/blob/master/src/components/AlertItem/AlertItem.module.css"
               >
-                CSS Modules
+                (example)
               </a>
             </span>
             , ensuring component-level encapsulation and avoiding global style
             conflicts
           </p>
 
-          <h3 id="server">Server - Express.js</h3>
+          <h3 id="server">
+            {" "}
+            Backend - Express.js{" "}
+            <span>
+              <a
+                className={styles.aboutHeaderRepoLink}
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-server"
+              >
+                <h4>GitHub repo</h4>
+              </a>
+            </span>
+          </h3>
           <p>
             The server uses{" "}
             <span>
-              <a target="_blank" href="https://expressjs.com/">
+              <a
+                target="_blank"
+                href="https://github.com/hapaxes/UW-alerts-map-server/blob/main/src/index.js"
+              >
                 Express.js
               </a>
             </span>{" "}
